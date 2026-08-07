@@ -23,8 +23,8 @@ const parseAppointmentDate = (dateStr: string) => {
   if (!dateStr) return null;
   const cleaned = dateStr.trim();
 
-  // Try "DD Month, YYYY" e.g., "16 May, 2022" or "16 May 2022"
-  const textMatch = cleaned.match(/^(\d{1,2})\s+([A-Za-z]+),?\s+(\d{4})$/);
+  // Try "DD-Month-YYYY" or "DD Month, YYYY" e.g., "15-Apr-2024", "16-May-2022", "16 May 2022"
+  const textMatch = cleaned.match(/^(\d{1,2})[\s\-]+([A-Za-z]+)[\s,\-]+(\d{4})$/);
   if (textMatch) {
     const day = parseInt(textMatch[1], 10);
     const monthName = textMatch[2].toLowerCase();
@@ -50,13 +50,23 @@ const parseAppointmentDate = (dateStr: string) => {
     }
   }
 
-  // Try ISO "YYYY-MM-DD"
-  const isoMatch = cleaned.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);
+  // Try ISO "YYYY-MM-DD" or "YYYY/MM/DD"
+  const isoMatch = cleaned.match(/^(\d{4})[\-\/](\d{1,2})[\-\/](\d{1,2})$/);
   if (isoMatch) {
     return {
       year: parseInt(isoMatch[1], 10),
       monthIndex: parseInt(isoMatch[2], 10) - 1,
       day: parseInt(isoMatch[3], 10),
+    };
+  }
+
+  // Native Date fallback
+  const fallback = new Date(cleaned);
+  if (!isNaN(fallback.getTime())) {
+    return {
+      year: fallback.getFullYear(),
+      monthIndex: fallback.getMonth(),
+      day: fallback.getDate(),
     };
   }
 
@@ -79,7 +89,7 @@ const getUpcomingAnniversary = (appointmentDateStr: string) => {
   
   const diffTime = anniversaryDate.getTime() - todayMidnight.getTime();
   const daysUntil = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-  const yearsCompleted = anniversaryDate.getFullYear() - appointmentYear;
+  const yearsCompleted = Math.max(1, today.getFullYear() - appointmentYear);
   
   return {
     anniversaryDate,
