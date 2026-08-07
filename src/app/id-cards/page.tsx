@@ -261,92 +261,166 @@ export default function IdCardsPage() {
                   </Link>
                 </div>
 
-                {/* Front Side Section */}
-                <div className="space-y-4">
-                  <span className="text-[10px] font-extrabold uppercase tracking-widest text-slate-400">Card Front Customization</span>
-                  
-                  {/* Designation */}
-                  <div>
-                    <label className="block text-xs font-extrabold text-slate-800 mb-1.5">Designation Title</label>
-                    <input
-                      type="text"
-                      value={customTitle}
-                      onChange={(e) => { setCustomTitle(e.target.value); setResultUrl(null); }}
-                      className="w-full bg-slate-50 border border-slate-200 rounded-2xl px-3.5 py-2 text-xs text-slate-900 focus:outline-none focus:border-[#F47D30] focus:ring-2 focus:ring-[#F47D30]/20 transition-all font-medium"
-                    />
-                  </div>
+                {/* Studio Control Tabs */}
+                <div className="flex bg-slate-100 p-1 rounded-2xl border border-slate-200/80 gap-1">
+                  <button
+                    type="button"
+                    onClick={() => setActiveTab('align')}
+                    className={`flex-1 py-2 text-xs font-bold rounded-xl transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
+                      activeTab === 'align' 
+                        ? 'bg-white text-slate-900 shadow-sm border border-slate-200/60' 
+                        : 'text-slate-500 hover:text-slate-800'
+                    }`}
+                  >
+                    <Sliders size={13} /> Align
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setActiveTab('typography')}
+                    className={`flex-1 py-2 text-xs font-bold rounded-xl transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
+                      activeTab === 'typography' 
+                        ? 'bg-white text-slate-900 shadow-sm border border-slate-200/60' 
+                        : 'text-slate-500 hover:text-slate-800'
+                    }`}
+                  >
+                    <Type size={13} /> Typography
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setActiveTab('image')}
+                    className={`flex-1 py-2 text-xs font-bold rounded-xl transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
+                      activeTab === 'image' 
+                        ? 'bg-white text-slate-900 shadow-sm border border-slate-200/60' 
+                        : 'text-slate-500 hover:text-slate-800'
+                    }`}
+                  >
+                    <ImageIcon size={13} /> Image Edit
+                  </button>
+                </div>
 
-                  {/* Photo Scaling & Adjustments */}
-                  <div className="p-4 bg-slate-50/80 rounded-2xl border border-slate-200/80 space-y-4">
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs font-extrabold text-slate-800 flex items-center gap-1.5">
-                        <Sliders size={14} className="text-[#F47D30]" /> Photo Adjustments
-                      </span>
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setX(0);
-                          setY(0);
-                          setScale(1.0);
-                          setResultUrl(null);
-                        }}
-                        className="text-[10px] font-extrabold text-[#F47D30] hover:text-[#E06820] bg-white hover:bg-[#F47D30]/5 px-2.5 py-1 rounded-lg border border-[#F47D30]/20 transition-all cursor-pointer flex items-center gap-1 shadow-2xs"
-                      >
-                        <RotateCcw size={11} /> Set as Default
-                      </button>
-                    </div>
-
-                    {/* Zoom */}
+                {/* TAB 1: Front Side Section & Alignment */}
+                {activeTab === 'align' && (
+                  <div className="space-y-4 animate-fadeIn">
+                    <span className="text-[10px] font-extrabold uppercase tracking-widest text-slate-400">Card Front Customization</span>
+                    
+                    {/* Designation */}
                     <div>
-                      <div className="flex justify-between text-xs text-slate-600 mb-1.5 font-semibold">
-                        <label>Scale (Zoom)</label>
-                        <span className="font-mono text-[11px] bg-white px-2 py-0.5 rounded-md border border-slate-200 text-slate-900">{scale.toFixed(2)}x</span>
-                      </div>
+                      <label className="block text-xs font-extrabold text-slate-800 mb-1.5">Designation Title</label>
                       <input
-                        type="range"
-                        min="0.1"
-                        max="3"
-                        step="0.01"
-                        value={scale}
-                        onChange={(e) => { setScale(parseFloat(e.target.value)); setResultUrl(null); }}
-                        className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#F47D30]"
+                        type="text"
+                        value={customTitle}
+                        onChange={(e) => { setCustomTitle(e.target.value); setResultUrl(null); }}
+                        className="w-full bg-slate-50 border border-slate-200 rounded-2xl px-3.5 py-2 text-xs text-slate-900 focus:outline-none focus:border-[#F47D30] focus:ring-2 focus:ring-[#F47D30]/20 transition-all font-medium"
                       />
                     </div>
 
-                    {/* Position X & Y */}
-                    <div className="grid grid-cols-2 gap-4">
+                    {/* Photo Scaling & Adjustments */}
+                    <div className="p-4 bg-slate-50/80 rounded-2xl border border-slate-200/80 space-y-4">
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs font-extrabold text-slate-800 flex items-center gap-1.5">
+                          <Sliders size={14} className="text-[#F47D30]" /> Photo Adjustments
+                        </span>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setX(0);
+                            setY(0);
+                            setScale(1.0);
+                            setResultUrl(null);
+                          }}
+                          className="text-[10px] font-extrabold text-[#F47D30] hover:text-[#E06820] bg-white hover:bg-[#F47D30]/5 px-2.5 py-1 rounded-lg border border-[#F47D30]/20 transition-all cursor-pointer flex items-center gap-1 shadow-2xs"
+                        >
+                          <RotateCcw size={11} /> Reset
+                        </button>
+                      </div>
+
+                      {/* Zoom */}
                       <div>
                         <div className="flex justify-between text-xs text-slate-600 mb-1.5 font-semibold">
-                          <label>Pos X</label>
-                          <span className="font-mono text-[11px] bg-white px-1.5 py-0.5 rounded-md border border-slate-200 text-slate-900">{x}px</span>
+                          <label>Scale (Zoom)</label>
+                          <span className="font-mono text-[11px] bg-white px-2 py-0.5 rounded-md border border-slate-200 text-slate-900">{scale.toFixed(2)}x</span>
                         </div>
                         <input
                           type="range"
-                          min="-800"
-                          max="1080"
-                          value={x}
-                          onChange={(e) => { setX(parseInt(e.target.value)); setResultUrl(null); }}
+                          min="0.1"
+                          max="3"
+                          step="0.01"
+                          value={scale}
+                          onChange={(e) => { setScale(parseFloat(e.target.value)); setResultUrl(null); }}
                           className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#F47D30]"
                         />
                       </div>
 
-                      <div>
-                        <div className="flex justify-between text-xs text-slate-600 mb-1.5 font-semibold">
-                          <label>Pos Y</label>
-                          <span className="font-mono text-[11px] bg-white px-1.5 py-0.5 rounded-md border border-slate-200 text-slate-900">{y}px</span>
+                      {/* Position X & Y */}
+                      <div className="grid grid-cols-2 gap-4">
+                        <div>
+                          <div className="flex justify-between text-xs text-slate-600 mb-1.5 font-semibold">
+                            <label>Pos X</label>
+                            <span className="font-mono text-[11px] bg-white px-1.5 py-0.5 rounded-md border border-slate-200 text-slate-900">{x}px</span>
+                          </div>
+                          <input
+                            type="range"
+                            min="-800"
+                            max="1080"
+                            value={x}
+                            onChange={(e) => { setX(parseInt(e.target.value)); setResultUrl(null); }}
+                            className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#F47D30]"
+                          />
                         </div>
-                        <input
-                          type="range"
-                          min="-800"
-                          max="1920"
-                          value={y}
-                          onChange={(e) => { setY(parseInt(e.target.value)); setResultUrl(null); }}
-                          className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#F47D30]"
-                        />
+
+                        <div>
+                          <div className="flex justify-between text-xs text-slate-600 mb-1.5 font-semibold">
+                            <label>Pos Y</label>
+                            <span className="font-mono text-[11px] bg-white px-1.5 py-0.5 rounded-md border border-slate-200 text-slate-900">{y}px</span>
+                          </div>
+                          <input
+                            type="range"
+                            min="-800"
+                            max="1920"
+                            value={y}
+                            onChange={(e) => { setY(parseInt(e.target.value)); setResultUrl(null); }}
+                            className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#F47D30]"
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
+                )}
+
+                {/* TAB 2: Typography Panel */}
+                {activeTab === 'typography' && (
+                  <div className="animate-fadeIn">
+                    <TypographyPanel
+                      settings={typography}
+                      onChange={(newSettings) => {
+                        setTypography(newSettings);
+                        setResultUrl(null);
+                      }}
+                      onReset={() => {
+                        setTypography(defaultTypographySettings);
+                        setResultUrl(null);
+                      }}
+                    />
+                  </div>
+                )}
+
+                {/* TAB 3: Image Edit Panel */}
+                {activeTab === 'image' && (
+                  <div className="animate-fadeIn">
+                    <ImageEditPanel
+                      photoUrl={`/assets/templates/Id%20Card%20Employee%20Images/${encodeURIComponent(selectedEmployee.photoFileName)}`}
+                      adjustments={imageAdjustments}
+                      onChange={(newAdjustments) => {
+                        setImageAdjustments(newAdjustments);
+                        setResultUrl(null);
+                      }}
+                      onReset={() => {
+                        setImageAdjustments(defaultImageAdjustments);
+                        setResultUrl(null);
+                      }}
+                    />
+                  </div>
+                )}
 
                 {/* Backside Section & Toggle */}
                 <div className="pt-4 border-t border-slate-100 space-y-4">
@@ -529,6 +603,7 @@ export default function IdCardsPage() {
                                 top: `${(y / 1016) * 100}%`,
                                 width: `${scale * 100}%`,
                                 transformOrigin: 'top left',
+                                filter: getCssFilterString(imageAdjustments)
                               }}
                               className="z-10 object-contain pointer-events-none"
                               alt="Employee"
@@ -591,22 +666,22 @@ export default function IdCardsPage() {
                               }}
                             >
                               <span style={{ 
-                                fontFamily: "'Plus Jakarta Sans', sans-serif", 
-                                fontWeight: 800, 
+                                fontFamily: `'${typography.fontFamily}', 'Plus Jakarta Sans', sans-serif`, 
+                                fontWeight: typography.fontWeight === 'Bold' ? 800 : typography.fontWeight === 'SemiBold' ? 700 : 600, 
                                 fontSize: '18px', 
                                 color: '#121212',
-                                letterSpacing: '0'
+                                letterSpacing: typography.letterSpacing
                               }}>
                                 {selectedEmployee.name.split(' ')[0]}
                               </span>
                               {selectedEmployee.name.split(' ').length > 1 && (
                                 <span style={{ 
-                                  fontFamily: "'Plus Jakarta Sans', sans-serif", 
-                                  fontWeight: 800, 
+                                  fontFamily: `'${typography.fontFamily}', 'Plus Jakarta Sans', sans-serif`, 
+                                  fontWeight: typography.fontWeight === 'Bold' ? 800 : typography.fontWeight === 'SemiBold' ? 700 : 600, 
                                   fontSize: '18px', 
                                   color: '#121212',
                                   marginTop: '2px',
-                                  letterSpacing: '0'
+                                  letterSpacing: typography.letterSpacing
                                 }}>
                                   {selectedEmployee.name.split(' ').slice(1).join(' ')}
                                 </span>
@@ -622,7 +697,7 @@ export default function IdCardsPage() {
                               }}
                             >
                               <span style={{ 
-                                fontFamily: "'Plus Jakarta Sans', sans-serif", 
+                                fontFamily: `'${typography.fontFamily}', 'Plus Jakarta Sans', sans-serif`, 
                                 fontWeight: 700, 
                                 fontSize: '11px', 
                                 color: '#71cc44',

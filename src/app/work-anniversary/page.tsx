@@ -94,6 +94,7 @@ export default function WorkAnniversaryPage() {
   const [searchQuery, setSearchQuery] = useState<string>("");
 
   // Dynamic parameters
+  const [activeTab, setActiveTab] = useState<'align' | 'typography' | 'image'>('align');
   const [years, setYears] = useState<number>(3);
   const [templateType, setTemplateType] = useState<"story" | "post">("story");
   const [testimonial, setTestimonial] = useState<string>(
@@ -104,6 +105,9 @@ export default function WorkAnniversaryPage() {
   const [x, setX] = useState<number>(0);
   const [y, setY] = useState<number>(148);
   const [scale, setScale] = useState<number>(1.0);
+
+  const [typography, setTypography] = useState<TypographySettings>(defaultTypographySettings);
+  const [imageAdjustments, setImageAdjustments] = useState<ImageAdjustments>(defaultImageAdjustments);
 
   // Render state
   const [compName, setCompName] = useState("Comp 1");
@@ -143,8 +147,10 @@ export default function WorkAnniversaryPage() {
             testimonial,
             x,
             y,
-            scale
-          })
+            scale,
+            typographySettings: typography,
+            imageAdjustments
+          }),
         });
         const data = await res.json();
         if (data.success) {
@@ -158,7 +164,7 @@ export default function WorkAnniversaryPage() {
     }, 300);
 
     return () => clearTimeout(timer);
-  }, [selectedEmployee?.id, years, testimonial, x, y, scale]);
+  }, [selectedEmployee?.id, years, testimonial, x, y, scale, typography, imageAdjustments]);
 
   useEffect(() => {
     fetch("/api/employees")
@@ -437,109 +443,174 @@ export default function WorkAnniversaryPage() {
                   </div>
                 </div>
 
-                {/* Milestone Years Selector */}
-                <div>
-                  <label className="block text-xs font-extrabold text-slate-800 mb-2">
-                    Milestone Years Completed
-                  </label>
-                  <div className="flex flex-wrap gap-2">
-                    {Array.from(new Set([1, 2, 3, 5, 7, 10, years])).sort((a, b) => a - b).map((yr) => (
-                      <button
-                        key={yr}
-                        onClick={() => setYears(yr)}
-                        className={`py-2 px-3.5 text-xs font-extrabold rounded-xl border transition-all ${
-                          years === yr
-                            ? "bg-emerald-600 text-white border-emerald-600 shadow-sm"
-                            : "bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100"
-                        }`}
-                      >
-                        {yr} {yr === 1 ? "Year" : "Years"}
-                      </button>
-                    ))}
-                  </div>
+                {/* Studio Control Tabs */}
+                <div className="flex bg-slate-100 p-1 rounded-2xl border border-slate-200/80 gap-1">
+                  <button
+                    type="button"
+                    onClick={() => setActiveTab('align')}
+                    className={`flex-1 py-2 text-xs font-bold rounded-xl transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
+                      activeTab === 'align' 
+                        ? 'bg-white text-slate-900 shadow-sm border border-slate-200/60' 
+                        : 'text-slate-500 hover:text-slate-800'
+                    }`}
+                  >
+                    <Sliders size={13} /> Align
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setActiveTab('typography')}
+                    className={`flex-1 py-2 text-xs font-bold rounded-xl transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
+                      activeTab === 'typography' 
+                        ? 'bg-white text-slate-900 shadow-sm border border-slate-200/60' 
+                        : 'text-slate-500 hover:text-slate-800'
+                    }`}
+                  >
+                    <Type size={13} /> Typography
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setActiveTab('image')}
+                    className={`flex-1 py-2 text-xs font-bold rounded-xl transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
+                      activeTab === 'image' 
+                        ? 'bg-white text-slate-900 shadow-sm border border-slate-200/60' 
+                        : 'text-slate-500 hover:text-slate-800'
+                    }`}
+                  >
+                    <ImageIcon size={13} /> Image Edit
+                  </button>
                 </div>
 
-                {/* Testimonial Input */}
-                <div>
-                  <label className="block text-xs font-extrabold text-slate-800 mb-1.5">
-                    Testimonial / Recognition Quote
-                  </label>
-                  <textarea
-                    value={testimonial}
-                    onChange={(e) => setTestimonial(e.target.value)}
-                    rows={3}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-2xl p-3.5 text-xs text-slate-900 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all font-medium resize-none"
-                    placeholder="Enter testimonial text..."
-                  />
-                </div>
-
-                {/* Photo Position & Alignment */}
-                <div className="p-4 bg-slate-50/80 rounded-2xl border border-slate-200/80 space-y-4">
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs font-extrabold text-slate-800 flex items-center gap-1.5">
-                      <Sliders size={14} className="text-emerald-600" /> Photo Alignment
-                    </span>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setX(0);
-                        setY(148);
-                        setScale(1.0);
-                      }}
-                      className="text-[10px] font-extrabold text-emerald-700 hover:text-emerald-800 bg-white hover:bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200/80 transition-all cursor-pointer flex items-center gap-1 shadow-2xs"
-                    >
-                      <RotateCcw size={11} /> Set as Default
-                    </button>
-                  </div>
-
-                  <div>
-                    <div className="flex justify-between text-xs text-slate-600 mb-1 font-semibold">
-                      <label>Scale (Zoom)</label>
-                      <span className="font-mono text-[11px] bg-white px-2 py-0.5 rounded-md border border-slate-200 text-slate-900">{scale.toFixed(2)}x</span>
+                {/* TAB 1: Position & Alignment Controls */}
+                {activeTab === 'align' && (
+                  <div className="space-y-5 animate-fadeIn">
+                    {/* Milestone Years Selector */}
+                    <div>
+                      <label className="block text-xs font-extrabold text-slate-800 mb-2">
+                        Milestone Years Completed
+                      </label>
+                      <div className="flex flex-wrap gap-2">
+                        {Array.from(new Set([1, 2, 3, 5, 7, 10, years])).sort((a, b) => a - b).map((yr) => (
+                          <button
+                            key={yr}
+                            onClick={() => setYears(yr)}
+                            className={`py-2 px-3.5 text-xs font-extrabold rounded-xl border transition-all ${
+                              years === yr
+                                ? "bg-emerald-600 text-white border-emerald-600 shadow-sm"
+                                : "bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100"
+                            }`}
+                          >
+                            {yr} {yr === 1 ? "Year" : "Years"}
+                          </button>
+                        ))}
+                      </div>
                     </div>
-                    <input
-                      type="range"
-                      min="0.1"
-                      max="3"
-                      step="0.01"
-                      value={scale}
-                      onChange={(e) => setScale(parseFloat(e.target.value))}
-                      className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-emerald-600"
+
+                    {/* Testimonial Input */}
+                    <div>
+                      <label className="block text-xs font-extrabold text-slate-800 mb-1.5">
+                        Testimonial / Recognition Quote
+                      </label>
+                      <textarea
+                        value={testimonial}
+                        onChange={(e) => setTestimonial(e.target.value)}
+                        rows={3}
+                        className="w-full bg-slate-50 border border-slate-200 rounded-2xl p-3.5 text-xs text-slate-900 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all font-medium resize-none"
+                        placeholder="Enter testimonial text..."
+                      />
+                    </div>
+
+                    {/* Photo Position & Alignment */}
+                    <div className="p-4 bg-slate-50/80 rounded-2xl border border-slate-200/80 space-y-4">
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs font-extrabold text-slate-800 flex items-center gap-1.5">
+                          <Sliders size={14} className="text-emerald-600" /> Photo Alignment
+                        </span>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setX(0);
+                            setY(148);
+                            setScale(1.0);
+                          }}
+                          className="text-[10px] font-extrabold text-emerald-700 hover:text-emerald-800 bg-white hover:bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200/80 transition-all cursor-pointer flex items-center gap-1 shadow-2xs"
+                        >
+                          <RotateCcw size={11} /> Reset
+                        </button>
+                      </div>
+
+                      <div>
+                        <div className="flex justify-between text-xs text-slate-600 mb-1 font-semibold">
+                          <label>Scale (Zoom)</label>
+                          <span className="font-mono text-[11px] bg-white px-2 py-0.5 rounded-md border border-slate-200 text-slate-900">{scale.toFixed(2)}x</span>
+                        </div>
+                        <input
+                          type="range"
+                          min="0.1"
+                          max="3"
+                          step="0.01"
+                          value={scale}
+                          onChange={(e) => setScale(parseFloat(e.target.value))}
+                          className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-emerald-600"
+                        />
+                      </div>
+
+                      <div className="grid grid-cols-2 gap-4">
+                        <div>
+                          <div className="flex justify-between text-xs text-slate-600 mb-1 font-semibold">
+                            <label>Pos X</label>
+                            <span className="font-mono text-[11px] bg-white px-1.5 py-0.5 rounded-md border border-slate-200 text-slate-900">{x}px</span>
+                          </div>
+                          <input
+                            type="range"
+                            min="-800"
+                            max="800"
+                            value={x}
+                            onChange={(e) => setX(parseInt(e.target.value))}
+                            className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-emerald-600"
+                          />
+                        </div>
+
+                        <div>
+                          <div className="flex justify-between text-xs text-slate-600 mb-1 font-semibold">
+                            <label>Pos Y</label>
+                            <span className="font-mono text-[11px] bg-white px-1.5 py-0.5 rounded-md border border-slate-200 text-slate-900">{y}px</span>
+                          </div>
+                          <input
+                            type="range"
+                            min="-800"
+                            max="1920"
+                            value={y}
+                            onChange={(e) => setY(parseInt(e.target.value))}
+                            className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-emerald-600"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* TAB 2: Typography Panel */}
+                {activeTab === 'typography' && (
+                  <div className="animate-fadeIn">
+                    <TypographyPanel
+                      settings={typography}
+                      onChange={(newSettings) => setTypography(newSettings)}
+                      onReset={() => setTypography(defaultTypographySettings)}
                     />
                   </div>
+                )}
 
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <div className="flex justify-between text-xs text-slate-600 mb-1 font-semibold">
-                        <label>Pos X</label>
-                        <span className="font-mono text-[11px] bg-white px-1.5 py-0.5 rounded-md border border-slate-200 text-slate-900">{x}px</span>
-                      </div>
-                      <input
-                        type="range"
-                        min="-800"
-                        max="800"
-                        value={x}
-                        onChange={(e) => setX(parseInt(e.target.value))}
-                        className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-emerald-600"
-                      />
-                    </div>
-
-                    <div>
-                      <div className="flex justify-between text-xs text-slate-600 mb-1 font-semibold">
-                        <label>Pos Y</label>
-                        <span className="font-mono text-[11px] bg-white px-1.5 py-0.5 rounded-md border border-slate-200 text-slate-900">{y}px</span>
-                      </div>
-                      <input
-                        type="range"
-                        min="-800"
-                        max="941"
-                        value={y}
-                        onChange={(e) => setY(parseInt(e.target.value))}
-                        className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-emerald-600"
-                      />
-                    </div>
+                {/* TAB 3: Image Edit Panel */}
+                {activeTab === 'image' && (
+                  <div className="animate-fadeIn">
+                    <ImageEditPanel
+                      photoUrl={`/assets/templates/Id%20Card%20Employee%20Images/${encodeURIComponent(selectedEmployee.photoFileName)}`}
+                      adjustments={imageAdjustments}
+                      onChange={(newAdjustments) => setImageAdjustments(newAdjustments)}
+                      onReset={() => setImageAdjustments(defaultImageAdjustments)}
+                    />
                   </div>
-                </div>
+                )}
 
               </div>
             ) : (
