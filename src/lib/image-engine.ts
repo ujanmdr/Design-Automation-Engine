@@ -102,11 +102,14 @@ export async function generateBirthdayPost({
   const letterSpacing = typographySettings?.letterSpacing || "-1.975px";
   const textAlign = typographySettings?.textAlign || "left";
 
+  const fontGoogleParam = encodeURIComponent(fontFamily).replace(/%20/g, '+');
+
   const textSvg = Buffer.from(`
     <svg width="800" height="250" xmlns="http://www.w3.org/2000/svg">
       <style>
+        @import url('https://fonts.googleapis.com/css2?family=${fontGoogleParam}:wght@400;500;600;700;800&amp;display=swap');
         .name { 
-          font-family: '${fontFamily}', sans-serif; 
+          font-family: '${fontFamily}', 'Plus Jakarta Sans', sans-serif; 
           font-weight: ${fontWeightStr}; 
           font-size: 64px; 
           fill: #373737; 
@@ -114,7 +117,7 @@ export async function generateBirthdayPost({
           text-anchor: ${textAlign === 'center' ? 'middle' : textAlign === 'right' ? 'end' : 'start'};
         }
         .title { 
-          font-family: '${fontFamily}', sans-serif; 
+          font-family: '${fontFamily}', 'Plus Jakarta Sans', sans-serif; 
           font-weight: 500; 
           font-size: 42px; 
           fill: #373737; 
@@ -137,8 +140,9 @@ export async function generateBirthdayPost({
   const subtextSvg = Buffer.from(`
     <svg width="700" height="300" xmlns="http://www.w3.org/2000/svg">
       <style>
+        @import url('https://fonts.googleapis.com/css2?family=${fontGoogleParam}:wght@400;500;600;700;800&amp;display=swap');
         .subtext { 
-          font-family: '${fontFamily}', sans-serif; 
+          font-family: '${fontFamily}', 'Plus Jakarta Sans', sans-serif; 
           font-weight: ${fontWeightStr}; 
           font-size: 39.494px; 
           fill: #373737; 

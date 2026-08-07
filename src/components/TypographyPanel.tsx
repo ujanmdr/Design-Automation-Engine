@@ -36,15 +36,57 @@ export const defaultTypographySettings: TypographySettings = {
   verticalAlign: "top"
 };
 
-const fontFamilies = [
-  "Plus Jakarta Sans",
-  "Inter",
-  "Roboto",
-  "Montserrat",
-  "Playfair Display",
-  "Outfit",
-  "Geist",
-  "Fira Code"
+const fontCategories = [
+  {
+    category: "Sans-Serif",
+    fonts: [
+      "Plus Jakarta Sans",
+      "Inter",
+      "Roboto",
+      "Montserrat",
+      "Poppins",
+      "Outfit",
+      "Open Sans",
+      "Lato",
+      "Raleway",
+      "Geist"
+    ]
+  },
+  {
+    category: "Serif",
+    fonts: [
+      "Playfair Display",
+      "Merriweather",
+      "Lora",
+      "Cinzel",
+      "Cormorant Garamond",
+      "Bodoni Moda"
+    ]
+  },
+  {
+    category: "Display & Modern",
+    fonts: [
+      "Bebas Neue",
+      "Oswald",
+      "Abril Fatface"
+    ]
+  },
+  {
+    category: "Script & Handwriting",
+    fonts: [
+      "Dancing Script",
+      "Great Vibes",
+      "Satisfy",
+      "Pacifico"
+    ]
+  },
+  {
+    category: "Monospace",
+    fonts: [
+      "Fira Code",
+      "JetBrains Mono"
+    ]
+  }
 ];
 
 const fontWeights = [
@@ -87,7 +129,7 @@ export default function TypographyPanel({ settings, onChange, onReset }: Typogra
         </div>
       </div>
 
-      {/* Font Family Dropdown */}
+      {/* Font Family Dropdown with Google Fonts Categories */}
       <div>
         <select
           value={settings.fontFamily}
@@ -95,10 +137,14 @@ export default function TypographyPanel({ settings, onChange, onReset }: Typogra
           className="w-full bg-[#2A2A2A] text-zinc-100 text-xs font-semibold rounded-xl px-3.5 py-2.5 border border-zinc-700/80 focus:outline-none focus:border-zinc-500 transition-colors cursor-pointer appearance-none"
           style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%27A1A1AA' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E")`, backgroundRepeat: 'no-repeat', backgroundPosition: 'right 12px center' }}
         >
-          {fontFamilies.map((font) => (
-            <option key={font} value={font} className="bg-[#212121] text-zinc-100">
-              {font}
-            </option>
+          {fontCategories.map((cat) => (
+            <optgroup key={cat.category} label={cat.category} className="bg-[#212121] text-zinc-400 font-bold text-[11px]">
+              {cat.fonts.map((font) => (
+                <option key={font} value={font} className="bg-[#212121] text-zinc-100 font-normal text-xs" style={{ fontFamily: font }}>
+                  {font}
+                </option>
+              ))}
+            </optgroup>
           ))}
         </select>
       </div>
