@@ -2,7 +2,9 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { Trophy, Film, Sparkles, Download, RefreshCw, Calendar, CheckCircle2, Sliders, PlayCircle, Search, RotateCcw } from "lucide-react";
+import { Trophy, Film, Sparkles, Download, RefreshCw, Calendar, CheckCircle2, Sliders, PlayCircle, Search, RotateCcw, Type, Image as ImageIcon } from "lucide-react";
+import TypographyPanel, { TypographySettings, defaultTypographySettings } from "@/components/TypographyPanel";
+import ImageEditPanel, { ImageAdjustments, defaultImageAdjustments, getCssFilterString } from "@/components/ImageEditPanel";
 
 interface Employee {
   id: string;

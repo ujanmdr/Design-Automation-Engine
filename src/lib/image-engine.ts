@@ -3,6 +3,26 @@ import QRCode from "qrcode";
 import path from "path";
 import fs from "fs/promises";
 
+export interface TypographySettingsOptions {
+  fontFamily?: string;
+  fontWeight?: string;
+  fontSize?: number;
+  lineHeight?: number;
+  letterSpacing?: string;
+  textAlign?: "left" | "center" | "right";
+  verticalAlign?: "top" | "middle" | "bottom";
+}
+
+export interface ImageAdjustmentsOptions {
+  exposure?: number;
+  contrast?: number;
+  saturation?: number;
+  temperature?: number;
+  tint?: number;
+  highlights?: number;
+  shadows?: number;
+}
+
 export interface GeneratePostOptions {
   name: string;
   title: string;
@@ -12,6 +32,8 @@ export interface GeneratePostOptions {
   y: number;
   scale: number;
   outputFilename: string; // e.g. "Binish Maharjan birthday post.png"
+  typographySettings?: TypographySettingsOptions;
+  imageAdjustments?: ImageAdjustmentsOptions;
 }
 
 export interface GenerateIdCardOptions {
@@ -23,6 +45,8 @@ export interface GenerateIdCardOptions {
   y: number;
   scale: number;
   outputFilename: string;
+  typographySettings?: TypographySettingsOptions;
+  imageAdjustments?: ImageAdjustmentsOptions;
 }
 
 export interface GenerateIdCardBacksideOptions {
@@ -42,59 +66,84 @@ export async function generateBirthdayPost({
   x,
   y,
   scale,
-  outputFilename
+  outputFilename,
+  typographySettings,
+  imageAdjustments
 }: GeneratePostOptions): Promise<string> {
   // Paths to exported Figma layers
   const bgPath = path.join(process.cwd(), "public/assets/templates/background.png");
   const overlayPath = path.join(process.cwd(), "public/assets/templates/overlay.png");
 
   const finalWidth = Math.round(800 * scale);
-  const processedPhoto = await sharp(photoBuffer)
-    .rotate() // Automatically orient based on EXIF data
-    .resize({ width: finalWidth })
-    .toBuffer();
+  let photoSharp = sharp(photoBuffer).rotate().resize({ width: finalWidth });
+
+  if (imageAdjustments) {
+    const brightness = 1 + (imageAdjustments.exposure ?? 0) * 0.005;
+    const saturation = 1 + (imageAdjustments.saturation ?? 0) * 0.007;
+    const hue = (imageAdjustments.temperature ?? 0) * 0.4;
+    const contrastFactor = 1 + (imageAdjustments.contrast ?? 0) * 0.005;
+
+    photoSharp = photoSharp
+      .modulate({
+        brightness: Math.max(0.1, brightness),
+        saturation: Math.max(0.1, saturation),
+        hue: hue
+      })
+      .linear(contrastFactor, -(128 * (contrastFactor - 1)));
+  }
+
+  const processedPhoto = await photoSharp.toBuffer();
 
   const titleCapitalized = title.replace(/\b\w/g, l => l.toUpperCase());
+
+  // Typography settings overrides
+  const fontFamily = typographySettings?.fontFamily || "Plus Jakarta Sans";
+  const fontWeightStr = typographySettings?.fontWeight || "700";
+  const letterSpacing = typographySettings?.letterSpacing || "-1.975px";
+  const textAlign = typographySettings?.textAlign || "left";
 
   const textSvg = Buffer.from(`
     <svg width="800" height="250" xmlns="http://www.w3.org/2000/svg">
       <style>
         .name { 
-          font-family: 'Plus Jakarta Sans', sans-serif; 
-          font-weight: 700; 
+          font-family: '${fontFamily}', sans-serif; 
+          font-weight: ${fontWeightStr}; 
           font-size: 64px; 
           fill: #373737; 
-          letter-spacing: -2.56px; 
+          letter-spacing: ${letterSpacing}; 
+          text-anchor: ${textAlign === 'center' ? 'middle' : textAlign === 'right' ? 'end' : 'start'};
         }
         .title { 
-          font-family: 'Plus Jakarta Sans', sans-serif; 
+          font-family: '${fontFamily}', sans-serif; 
           font-weight: 500; 
           font-size: 42px; 
           fill: #373737; 
           letter-spacing: -0.84px;
           text-transform: capitalize;
+          text-anchor: ${textAlign === 'center' ? 'middle' : textAlign === 'right' ? 'end' : 'start'};
         }
       </style>
       <rect x="0" y="0" width="800" height="250" fill="#ffffff" />
-      <text x="20" y="80" class="name">${name}</text>
-      <text x="20" y="140" class="title">${titleCapitalized}</text>
+      <text x="${textAlign === 'center' ? 400 : textAlign === 'right' ? 780 : 20}" y="80" class="name">${name}</text>
+      <text x="${textAlign === 'center' ? 400 : textAlign === 'right' ? 780 : 20}" y="140" class="title">${titleCapitalized}</text>
     </svg>
   `);
 
   const subtextLines = subtext.split('\n');
   const subtextSvgContent = subtextLines.map((line, index) => 
-    `<text x="0" y="${40 + index * 52.659}" class="subtext">${line}</text>`
+    `<text x="${textAlign === 'center' ? 350 : textAlign === 'right' ? 700 : 0}" y="${40 + index * 52.659}" class="subtext">${line}</text>`
   ).join('');
 
   const subtextSvg = Buffer.from(`
     <svg width="700" height="300" xmlns="http://www.w3.org/2000/svg">
       <style>
         .subtext { 
-          font-family: 'Plus Jakarta Sans', sans-serif; 
-          font-weight: 600; 
+          font-family: '${fontFamily}', sans-serif; 
+          font-weight: ${fontWeightStr}; 
           font-size: 39.494px; 
           fill: #373737; 
-          letter-spacing: -1.975px; 
+          letter-spacing: ${letterSpacing}; 
+          text-anchor: ${textAlign === 'center' ? 'middle' : textAlign === 'right' ? 'end' : 'start'};
         }
       </style>
       ${subtextSvgContent}
@@ -127,7 +176,9 @@ export async function generateIdCard({
   x,
   y,
   scale,
-  outputFilename
+  outputFilename,
+  typographySettings,
+  imageAdjustments
 }: GenerateIdCardOptions): Promise<string> {
   const cardWidth = 638;
   const cardHeight = 1016;
@@ -136,10 +187,24 @@ export async function generateIdCard({
   const overlayPath = path.join(process.cwd(), "public", "assets", "templates", "id_card_overlay.png");
 
   const finalWidth = Math.round(cardWidth * scale);
-  const { data: photoData, info: photoInfo } = await sharp(photoBuffer)
-    .rotate()
-    .resize({ width: finalWidth })
-    .toBuffer({ resolveWithObject: true });
+  let photoSharp = sharp(photoBuffer).rotate().resize({ width: finalWidth });
+
+  if (imageAdjustments) {
+    const brightness = 1 + (imageAdjustments.exposure ?? 0) * 0.005;
+    const saturation = 1 + (imageAdjustments.saturation ?? 0) * 0.007;
+    const hue = (imageAdjustments.temperature ?? 0) * 0.4;
+    const contrastFactor = 1 + (imageAdjustments.contrast ?? 0) * 0.005;
+
+    photoSharp = photoSharp
+      .modulate({
+        brightness: Math.max(0.1, brightness),
+        saturation: Math.max(0.1, saturation),
+        hue: hue
+      })
+      .linear(contrastFactor, -(128 * (contrastFactor - 1)));
+  }
+
+  const { data: photoData, info: photoInfo } = await photoSharp.toBuffer({ resolveWithObject: true });
 
   let compositePhoto = photoData;
   let compositeX = x;
@@ -239,6 +304,8 @@ export interface GenerateAnniversaryCard1Options {
   x?: number;
   y?: number;
   scale?: number;
+  typographySettings?: TypographySettingsOptions;
+  imageAdjustments?: ImageAdjustmentsOptions;
 }
 
 export interface GenerateAnniversaryCard2Options {
@@ -254,7 +321,9 @@ export async function generateAnniversaryCard1({
   outputFilename,
   x = 0,
   y = 0,
-  scale = 1.0
+  scale = 1.0,
+  typographySettings,
+  imageAdjustments
 }: GenerateAnniversaryCard1Options): Promise<string> {
   const cardWidth = 702;
   const cardHeight = 940;
@@ -264,10 +333,24 @@ export async function generateAnniversaryCard1({
 
   // Resize the photo based on scale factor
   const finalWidth = Math.round(cardWidth * scale);
-  const { data: photoData, info: photoInfo } = await sharp(photoBuffer)
-    .rotate()
-    .resize({ width: finalWidth })
-    .toBuffer({ resolveWithObject: true });
+  let photoSharp = sharp(photoBuffer).rotate().resize({ width: finalWidth });
+
+  if (imageAdjustments) {
+    const brightness = 1 + (imageAdjustments.exposure ?? 0) * 0.005;
+    const saturation = 1 + (imageAdjustments.saturation ?? 0) * 0.007;
+    const hue = (imageAdjustments.temperature ?? 0) * 0.4;
+    const contrastFactor = 1 + (imageAdjustments.contrast ?? 0) * 0.005;
+
+    photoSharp = photoSharp
+      .modulate({
+        brightness: Math.max(0.1, brightness),
+        saturation: Math.max(0.1, saturation),
+        hue: hue
+      })
+      .linear(contrastFactor, -(128 * (contrastFactor - 1)));
+  }
+
+  const { data: photoData, info: photoInfo } = await photoSharp.toBuffer({ resolveWithObject: true });
 
   let compositePhoto = photoData;
   let compositeX = x;

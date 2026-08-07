@@ -4,18 +4,24 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { jsPDF } from "jspdf";
 import QRCode from "qrcode";
-import { IdCard, Sparkles, Download, RefreshCw, Sliders, Search, CheckCircle2, User, FileText, RotateCcw } from "lucide-react";
+import { IdCard, Sparkles, Download, RefreshCw, Sliders, Search, CheckCircle2, User, FileText, RotateCcw, Type, Image as ImageIcon } from "lucide-react";
+import TypographyPanel, { TypographySettings, defaultTypographySettings } from "@/components/TypographyPanel";
+import ImageEditPanel, { ImageAdjustments, defaultImageAdjustments, getCssFilterString } from "@/components/ImageEditPanel";
 
 export default function IdCardsPage() {
   const [employees, setEmployees] = useState<any[]>([]);
   const [selectedEmployee, setSelectedEmployee] = useState<any>(null);
   
   // Customization states
+  const [activeTab, setActiveTab] = useState<'align' | 'typography' | 'image'>('align');
   const [x, setX] = useState(0);
   const [y, setY] = useState(0);
   const [scale, setScale] = useState(1.0);
   const [customTitle, setCustomTitle] = useState("Engineering");
   const [searchQuery, setSearchQuery] = useState("");
+
+  const [typography, setTypography] = useState<TypographySettings>(defaultTypographySettings);
+  const [imageAdjustments, setImageAdjustments] = useState<ImageAdjustments>(defaultImageAdjustments);
   
   // Backside states
   const [includeBackside, setIncludeBackside] = useState(false);
@@ -96,7 +102,9 @@ export default function IdCardsPage() {
           website,
           email,
           phone,
-          address
+          address,
+          typographySettings: typography,
+          imageAdjustments
         }),
       });
 

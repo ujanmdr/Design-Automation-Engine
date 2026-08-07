@@ -7,7 +7,7 @@ import sharp from "sharp";
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { employeeId, yearsCompleted, testimonial, x, y, scale } = body;
+    const { employeeId, yearsCompleted, testimonial, x, y, scale, typographySettings, imageAdjustments } = body;
 
     if (!employeeId) {
       return NextResponse.json({ error: "Missing employeeId" }, { status: 400 });
@@ -56,7 +56,9 @@ export async function POST(req: NextRequest) {
       outputFilename: card1Filename,
       x: x !== undefined ? x : (emp.anniversaryPhotoSettings?.x ?? 0),
       y: y !== undefined ? y : (emp.anniversaryPhotoSettings?.y ?? 148),
-      scale: scale !== undefined ? scale : (emp.anniversaryPhotoSettings?.scale ?? 1.0)
+      scale: scale !== undefined ? scale : (emp.anniversaryPhotoSettings?.scale ?? 1.0),
+      typographySettings,
+      imageAdjustments
     });
 
     // Generate Card 2 preview

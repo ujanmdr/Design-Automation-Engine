@@ -6,7 +6,7 @@ import path from "path";
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { employeeId, x, y, scale, customTitle } = body;
+    const { employeeId, x, y, scale, customTitle, typographySettings, imageAdjustments } = body;
 
     if (!employeeId) {
       return NextResponse.json({ error: "Employee ID is required" }, { status: 400 });
@@ -55,7 +55,9 @@ export async function POST(req: NextRequest) {
       x: employee.idCardPhotoSettings.x,
       y: employee.idCardPhotoSettings.y,
       scale: employee.idCardPhotoSettings.scale,
-      outputFilename
+      outputFilename,
+      typographySettings,
+      imageAdjustments
     });
 
     let backUrl = null;

@@ -2,18 +2,24 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { Sparkles, Download, RefreshCw, Sliders, User, Calendar, CheckCircle2, ArrowRight, Search, RotateCcw } from "lucide-react";
+import { Sparkles, Download, RefreshCw, Sliders, User, Calendar, CheckCircle2, ArrowRight, Search, RotateCcw, Type, Image as ImageIcon } from "lucide-react";
+import TypographyPanel, { TypographySettings, defaultTypographySettings } from "@/components/TypographyPanel";
+import ImageEditPanel, { ImageAdjustments, defaultImageAdjustments, getCssFilterString } from "@/components/ImageEditPanel";
 
 export default function Home() {
   const [upcoming, setUpcoming] = useState<any[]>([]);
   const [selectedEmployee, setSelectedEmployee] = useState<any>(null);
   const [searchQuery, setSearchQuery] = useState("");
   
-  // Customization states
+  // Studio tabs & Customization states
+  const [activeTab, setActiveTab] = useState<'align' | 'typography' | 'image'>('align');
   const [subtext, setSubtext] = useState("Wishing you a joyful day and a successful year ahead!");
   const [x, setX] = useState(160);
   const [y, setY] = useState(568);
   const [scale, setScale] = useState(1.15);
+
+  const [typography, setTypography] = useState<TypographySettings>(defaultTypographySettings);
+  const [imageAdjustments, setImageAdjustments] = useState<ImageAdjustments>(defaultImageAdjustments);
   
   const [resultUrl, setResultUrl] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
@@ -54,7 +60,9 @@ export default function Home() {
           subtext,
           x,
           y,
-          scale
+          scale,
+          typographySettings: typography,
+          imageAdjustments
         }),
       });
 
@@ -201,6 +209,7 @@ export default function Home() {
                         src={`/assets/templates/Birthday%20Post%20Employee%20Images/${encodeURIComponent(selectedEmployee.photoFileName)}`} 
                         alt={selectedEmployee.name} 
                         className="w-full h-full object-cover object-top"
+                        style={{ filter: getCssFilterString(imageAdjustments) }}
                         onError={(e) => (e.currentTarget.src = '/assets/templates/overlay.png')}
                       />
                     </div>
@@ -217,90 +226,167 @@ export default function Home() {
                   </Link>
                 </div>
 
-                {/* Subtext Input */}
-                <div>
-                  <label className="block text-xs font-extrabold text-slate-800 mb-1.5">
-                    Custom Greeting Subtext
-                  </label>
-                  <textarea
-                    value={subtext}
-                    onChange={(e) => { setSubtext(e.target.value); setResultUrl(null); }}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-2xl p-3.5 text-xs text-slate-900 focus:outline-none focus:border-[#F47D30] focus:ring-2 focus:ring-[#F47D30]/20 transition-all font-medium resize-none"
-                    rows={2}
-                    required
-                  />
+                {/* Studio Control Tabs */}
+                <div className="flex bg-slate-100 p-1 rounded-2xl border border-slate-200/80 gap-1">
+                  <button
+                    type="button"
+                    onClick={() => setActiveTab('align')}
+                    className={`flex-1 py-2 text-xs font-bold rounded-xl transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
+                      activeTab === 'align' 
+                        ? 'bg-white text-slate-900 shadow-sm border border-slate-200/60' 
+                        : 'text-slate-500 hover:text-slate-800'
+                    }`}
+                  >
+                    <Sliders size={13} /> Align
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setActiveTab('typography')}
+                    className={`flex-1 py-2 text-xs font-bold rounded-xl transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
+                      activeTab === 'typography' 
+                        ? 'bg-white text-slate-900 shadow-sm border border-slate-200/60' 
+                        : 'text-slate-500 hover:text-slate-800'
+                    }`}
+                  >
+                    <Type size={13} /> Typography
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setActiveTab('image')}
+                    className={`flex-1 py-2 text-xs font-bold rounded-xl transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
+                      activeTab === 'image' 
+                        ? 'bg-white text-slate-900 shadow-sm border border-slate-200/60' 
+                        : 'text-slate-500 hover:text-slate-800'
+                    }`}
+                  >
+                    <ImageIcon size={13} /> Image Edit
+                  </button>
                 </div>
 
-                {/* Photo Alignment & Scale Sliders */}
-                <div className="p-4 bg-slate-50/80 rounded-2xl border border-slate-200/80 space-y-4">
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs font-extrabold text-slate-800 flex items-center gap-1.5">
-                      <Sliders size={14} className="text-[#F47D30]" /> Photo Alignment
-                    </span>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setX(160);
-                        setY(568);
-                        setScale(1.15);
+                {/* TAB 1: Position & Alignment Controls */}
+                {activeTab === 'align' && (
+                  <div className="space-y-5 animate-fadeIn">
+                    {/* Subtext Input */}
+                    <div>
+                      <label className="block text-xs font-extrabold text-slate-800 mb-1.5">
+                        Custom Greeting Subtext
+                      </label>
+                      <textarea
+                        value={subtext}
+                        onChange={(e) => { setSubtext(e.target.value); setResultUrl(null); }}
+                        className="w-full bg-slate-50 border border-slate-200 rounded-2xl p-3.5 text-xs text-slate-900 focus:outline-none focus:border-[#F47D30] focus:ring-2 focus:ring-[#F47D30]/20 transition-all font-medium resize-none"
+                        rows={2}
+                        required
+                      />
+                    </div>
+
+                    {/* Photo Alignment & Scale Sliders */}
+                    <div className="p-4 bg-slate-50/80 rounded-2xl border border-slate-200/80 space-y-4">
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs font-extrabold text-slate-800 flex items-center gap-1.5">
+                          <Sliders size={14} className="text-[#F47D30]" /> Photo Alignment
+                        </span>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setX(160);
+                            setY(568);
+                            setScale(1.15);
+                            setResultUrl(null);
+                          }}
+                          className="text-[10px] font-extrabold text-[#F47D30] hover:text-[#E06820] bg-white hover:bg-[#F47D30]/5 px-2.5 py-1 rounded-lg border border-[#F47D30]/20 transition-all cursor-pointer flex items-center gap-1 shadow-2xs"
+                        >
+                          <RotateCcw size={11} /> Reset
+                        </button>
+                      </div>
+
+                      {/* Zoom */}
+                      <div>
+                        <div className="flex justify-between text-xs text-slate-600 mb-1.5 font-semibold">
+                          <label>Scale (Zoom)</label>
+                          <span className="font-mono text-[11px] bg-white px-2 py-0.5 rounded-md border border-slate-200 text-slate-900">{scale.toFixed(2)}x</span>
+                        </div>
+                        <input
+                          type="range"
+                          min="0.1"
+                          max="3"
+                          step="0.01"
+                          value={scale}
+                          onChange={(e) => { setScale(parseFloat(e.target.value)); setResultUrl(null); }}
+                          className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#F47D30]"
+                        />
+                      </div>
+
+                      {/* Position X & Y */}
+                      <div className="grid grid-cols-2 gap-4">
+                        <div>
+                          <div className="flex justify-between text-xs text-slate-600 mb-1.5 font-semibold">
+                            <label>Pos X</label>
+                            <span className="font-mono text-[11px] bg-white px-1.5 py-0.5 rounded-md border border-slate-200 text-slate-900">{x}px</span>
+                          </div>
+                          <input
+                            type="range"
+                            min="-800"
+                            max="1080"
+                            value={x}
+                            onChange={(e) => { setX(parseInt(e.target.value)); setResultUrl(null); }}
+                            className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#F47D30]"
+                          />
+                        </div>
+
+                        <div>
+                          <div className="flex justify-between text-xs text-slate-600 mb-1.5 font-semibold">
+                            <label>Pos Y</label>
+                            <span className="font-mono text-[11px] bg-white px-1.5 py-0.5 rounded-md border border-slate-200 text-slate-900">{y}px</span>
+                          </div>
+                          <input
+                            type="range"
+                            min="-800"
+                            max="1920"
+                            value={y}
+                            onChange={(e) => { setY(parseInt(e.target.value)); setResultUrl(null); }}
+                            className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#F47D30]"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* TAB 2: Typography Panel */}
+                {activeTab === 'typography' && (
+                  <div className="animate-fadeIn">
+                    <TypographyPanel
+                      settings={typography}
+                      onChange={(newSettings) => {
+                        setTypography(newSettings);
                         setResultUrl(null);
                       }}
-                      className="text-[10px] font-extrabold text-[#F47D30] hover:text-[#E06820] bg-white hover:bg-[#F47D30]/5 px-2.5 py-1 rounded-lg border border-[#F47D30]/20 transition-all cursor-pointer flex items-center gap-1 shadow-2xs"
-                    >
-                      <RotateCcw size={11} /> Set as Default
-                    </button>
-                  </div>
-
-                  {/* Zoom */}
-                  <div>
-                    <div className="flex justify-between text-xs text-slate-600 mb-1.5 font-semibold">
-                      <label>Scale (Zoom)</label>
-                      <span className="font-mono text-[11px] bg-white px-2 py-0.5 rounded-md border border-slate-200 text-slate-900">{scale.toFixed(2)}x</span>
-                    </div>
-                    <input
-                      type="range"
-                      min="0.1"
-                      max="3"
-                      step="0.01"
-                      value={scale}
-                      onChange={(e) => { setScale(parseFloat(e.target.value)); setResultUrl(null); }}
-                      className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#F47D30]"
+                      onReset={() => {
+                        setTypography(defaultTypographySettings);
+                        setResultUrl(null);
+                      }}
                     />
                   </div>
+                )}
 
-                  {/* Position X & Y */}
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <div className="flex justify-between text-xs text-slate-600 mb-1.5 font-semibold">
-                        <label>Pos X</label>
-                        <span className="font-mono text-[11px] bg-white px-1.5 py-0.5 rounded-md border border-slate-200 text-slate-900">{x}px</span>
-                      </div>
-                      <input
-                        type="range"
-                        min="-800"
-                        max="1080"
-                        value={x}
-                        onChange={(e) => { setX(parseInt(e.target.value)); setResultUrl(null); }}
-                        className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#F47D30]"
-                      />
-                    </div>
-
-                    <div>
-                      <div className="flex justify-between text-xs text-slate-600 mb-1.5 font-semibold">
-                        <label>Pos Y</label>
-                        <span className="font-mono text-[11px] bg-white px-1.5 py-0.5 rounded-md border border-slate-200 text-slate-900">{y}px</span>
-                      </div>
-                      <input
-                        type="range"
-                        min="-800"
-                        max="1920"
-                        value={y}
-                        onChange={(e) => { setY(parseInt(e.target.value)); setResultUrl(null); }}
-                        className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#F47D30]"
-                      />
-                    </div>
+                {/* TAB 3: Image Edit Panel */}
+                {activeTab === 'image' && (
+                  <div className="animate-fadeIn">
+                    <ImageEditPanel
+                      photoUrl={`/assets/templates/Birthday%20Post%20Employee%20Images/${encodeURIComponent(selectedEmployee.photoFileName)}`}
+                      adjustments={imageAdjustments}
+                      onChange={(newAdjustments) => {
+                        setImageAdjustments(newAdjustments);
+                        setResultUrl(null);
+                      }}
+                      onReset={() => {
+                        setImageAdjustments(defaultImageAdjustments);
+                        setResultUrl(null);
+                      }}
+                    />
                   </div>
-                </div>
+                )}
 
                 {/* Action Button */}
                 <button
@@ -316,7 +402,7 @@ export default function Home() {
                   ) : (
                     <>
                       <Sparkles size={16} />
-                      Save Position & Generate HD Post
+                      Save Settings & Generate HD Post
                     </>
                   )}
                 </button>
@@ -381,6 +467,7 @@ export default function Home() {
                             top: `${(y / 1920) * 100}%`,
                             width: `${(800 / 1080) * 100 * scale}%`,
                             transformOrigin: 'top left',
+                            filter: getCssFilterString(imageAdjustments)
                           }}
                           className="z-10 object-contain pointer-events-none"
                           alt="Employee"
@@ -405,12 +492,13 @@ export default function Home() {
                           width: `${(700 / 1080) * 100}%`
                         }}>
                           <span style={{ 
-                            fontFamily: "'Plus Jakarta Sans', sans-serif", 
-                            fontWeight: 600, 
+                            fontFamily: `'${typography.fontFamily}', sans-serif`, 
+                            fontWeight: typography.fontWeight === 'Bold' ? 700 : typography.fontWeight === 'SemiBold' ? 600 : typography.fontWeight === 'Medium' ? 500 : typography.fontWeight === 'ExtraBold' ? 800 : 400, 
                             fontSize: '9.5px', 
                             color: '#373737', 
-                            letterSpacing: '-0.04em',
-                            lineHeight: 1.3
+                            letterSpacing: typography.letterSpacing,
+                            lineHeight: 1.3,
+                            textAlign: typography.textAlign
                           }}>
                             {subtext}
                           </span>
@@ -420,20 +508,22 @@ export default function Home() {
                         <div className="absolute z-40 flex flex-col pointer-events-none" style={{
                           left: `${(80 / 1080) * 100}%`,
                           top: `${(1570 / 1920) * 100}%`,
+                          width: '80%',
+                          textAlign: typography.textAlign
                         }}>
                           <span style={{ 
-                            fontFamily: "'Plus Jakarta Sans', sans-serif", 
-                            fontWeight: 'bold', 
+                            fontFamily: `'${typography.fontFamily}', sans-serif`, 
+                            fontWeight: typography.fontWeight === 'Bold' ? 700 : typography.fontWeight === 'SemiBold' ? 600 : typography.fontWeight === 'Medium' ? 500 : typography.fontWeight === 'ExtraBold' ? 800 : 400, 
                             fontSize: '15px', 
                             color: '#373737', 
-                            letterSpacing: '-0.04em',
+                            letterSpacing: typography.letterSpacing,
                             lineHeight: 1.1
                           }}>
                             {selectedEmployee.name}
                           </span>
                           
                           <span style={{ 
-                            fontFamily: "'Plus Jakarta Sans', sans-serif", 
+                            fontFamily: `'${typography.fontFamily}', sans-serif`, 
                             fontWeight: 500, 
                             fontSize: '10px', 
                             color: '#373737', 
