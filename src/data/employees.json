@@ -1,0 +1,911 @@
+[
+  {
+    "id": "aashish-chapain",
+    "name": "Aashish Chapain",
+    "title": " ML Engineer",
+    "birthday": "04-17",
+    "photoFileName": "Aashish Chapain.png",
+    "birthdayPhotoSettings": {
+      "x": 160,
+      "y": 568,
+      "scale": 1.15
+    },
+    "idCardPhotoSettings": {
+      "x": 0,
+      "y": 0,
+      "scale": 1
+    },
+    "email": "aashish.chapain@gritfeat.com",
+    "appointmentDate": "15-Apr-2024"
+  },
+  {
+    "id": "abiral-khadka",
+    "name": "Abiral Khadka",
+    "title": "Software Engineer",
+    "birthday": "12-02",
+    "photoFileName": "Abiral Khadka.png",
+    "birthdayPhotoSettings": {
+      "x": 160,
+      "y": 568,
+      "scale": 1.15
+    },
+    "idCardPhotoSettings": {
+      "x": 0,
+      "y": 0,
+      "scale": 1
+    },
+    "email": "abiral.khadka@gritfeat.com",
+    "appointmentDate": "15-Jan-2024"
+  },
+  {
+    "id": "abyakta-koirala",
+    "name": "Abyakta Koirala",
+    "title": "Sr.Data Engineer",
+    "birthday": "02-26",
+    "photoFileName": "Abyakta Koirala.png",
+    "birthdayPhotoSettings": {
+      "x": 160,
+      "y": 568,
+      "scale": 1.15
+    },
+    "idCardPhotoSettings": {
+      "x": 0,
+      "y": 0,
+      "scale": 1
+    },
+    "email": "abyakta.koirala@gritfeat.com",
+    "appointmentDate": "16-May-2022"
+  },
+  {
+    "id": "aditya-malla",
+    "name": "Aditya Malla",
+    "title": "People Operation Manager",
+    "birthday": "02-14",
+    "photoFileName": "Aditya Malla.png",
+    "birthdayPhotoSettings": {
+      "x": 160,
+      "y": 568,
+      "scale": 1.15
+    },
+    "idCardPhotoSettings": {
+      "x": 0,
+      "y": 0,
+      "scale": 1
+    },
+    "email": "aditya.malla@gritfeat.com",
+    "appointmentDate": "16-May-2022"
+  },
+  {
+    "id": "alisha-dhukuchhu",
+    "name": "Alisha Dhukuchhu",
+    "title": "UIUX Designer",
+    "birthday": "05-28",
+    "photoFileName": "Alisha Dhukuchhu.png",
+    "birthdayPhotoSettings": {
+      "x": 160,
+      "y": 568,
+      "scale": 1.15
+    },
+    "idCardPhotoSettings": {
+      "x": 0,
+      "y": 0,
+      "scale": 1
+    },
+    "email": "alisha.dhukuchhu@gritfeat.com",
+    "appointmentDate": "16-May-2022"
+  },
+  {
+    "id": "amrita-thakur",
+    "name": "Amrita Thakur",
+    "title": "Sr. ML Engineer",
+    "birthday": "11-30",
+    "photoFileName": "Amrita Thakur.png",
+    "birthdayPhotoSettings": {
+      "x": 160,
+      "y": 568,
+      "scale": 1.15
+    },
+    "idCardPhotoSettings": {
+      "x": 0,
+      "y": 0,
+      "scale": 1
+    },
+    "email": "amrita.thakur@gritfeat.com",
+    "appointmentDate": "10-May-2021"
+  },
+  {
+    "id": "angel-shrestha",
+    "name": "Angel Shrestha",
+    "title": "Sr.ML Engineer",
+    "birthday": "01-01",
+    "photoFileName": "Angel Shrestha.png",
+    "birthdayPhotoSettings": {
+      "x": 160,
+      "y": 568,
+      "scale": 1.15
+    },
+    "idCardPhotoSettings": {
+      "x": 0,
+      "y": 0,
+      "scale": 1
+    },
+    "email": "angel.shrestha@gritfeat.com"
+  },
+  {
+    "id": "apekshya-shakya",
+    "name": "Apekshya Shakya",
+    "title": "Software Engineer",
+    "birthday": "02-21",
+    "photoFileName": "Apekshya Shakya.png",
+    "birthdayPhotoSettings": {
+      "x": 160,
+      "y": 568,
+      "scale": 1.15
+    },
+    "idCardPhotoSettings": {
+      "x": 0,
+      "y": 0,
+      "scale": 1
+    },
+    "email": "apekshya.shakya@gritfeat.com",
+    "appointmentDate": "08-Nov-2023"
+  },
+  {
+    "id": "ashmin-bhattarai",
+    "name": "Ashmin Bhattarai",
+    "title": "ML Engineer",
+    "birthday": "12-24",
+    "photoFileName": "Ashmin Bhattarai.png",
+    "birthdayPhotoSettings": {
+      "x": 160,
+      "y": 568,
+      "scale": 1.15
+    },
+    "idCardPhotoSettings": {
+      "x": 0,
+      "y": 0,
+      "scale": 1
+    },
+    "email": "ashmin.bhattarai@gritfeat.com",
+    "appointmentDate": "03-July-2023"
+  },
+  {
+    "id": "ashutosh-joshi",
+    "name": "Ashutosh Joshi",
+    "title": "Lead Platform Engineer",
+    "birthday": "03-07",
+    "photoFileName": "Ashutosh Joshi.png",
+    "birthdayPhotoSettings": {
+      "x": 160,
+      "y": 568,
+      "scale": 1.15
+    },
+    "idCardPhotoSettings": {
+      "x": 0,
+      "y": 0,
+      "scale": 1
+    },
+    "email": "ashutosh@gritfeat.com",
+    "appointmentDate": "8-Feb-2021"
+  },
+  {
+    "id": "binish-maharjan",
+    "name": "Binish Maharjan",
+    "title": "Sr.Software Engineer",
+    "birthday": "08-29",
+    "photoFileName": "Binish Maharjan.png",
+    "birthdayPhotoSettings": {
+      "x": 160,
+      "y": 568,
+      "scale": 1.15
+    },
+    "idCardPhotoSettings": {
+      "x": 0,
+      "y": 0,
+      "scale": 1
+    },
+    "email": "binish.maharjan@gritfeat.com",
+    "appointmentDate": "5-Apr-2021"
+  },
+  {
+    "id": "dilli-maya-kattel",
+    "name": "Dilli Maya Kattel",
+    "title": "Office Helper",
+    "birthday": "05-19",
+    "photoFileName": "Dilli Maya Kattel.png",
+    "birthdayPhotoSettings": {
+      "x": 160,
+      "y": 568,
+      "scale": 1.15
+    },
+    "idCardPhotoSettings": {
+      "x": 0,
+      "y": 0,
+      "scale": 1
+    },
+    "email": "dilli.kattel@gritfeat.com",
+    "appointmentDate": "20-June-2024"
+  },
+  {
+    "id": "dipesh-shakya",
+    "name": "Dipesh Shakya",
+    "title": "Sr.Data Engineer",
+    "birthday": "09-12",
+    "photoFileName": "Dipesh Shakya.png",
+    "birthdayPhotoSettings": {
+      "x": 160,
+      "y": 568,
+      "scale": 1.15
+    },
+    "idCardPhotoSettings": {
+      "x": 0,
+      "y": 0,
+      "scale": 1
+    },
+    "email": "dipesh@gritfeat.com",
+    "appointmentDate": "5-Apr-2021"
+  },
+  {
+    "id": "gagan-bhattarai",
+    "name": "Gagan Bhattarai",
+    "title": "DevOps Engineer",
+    "birthday": "07-09",
+    "photoFileName": "Gagan Bhattarai.png",
+    "birthdayPhotoSettings": {
+      "x": 160,
+      "y": 568,
+      "scale": 1.15
+    },
+    "idCardPhotoSettings": {
+      "x": 0,
+      "y": 0,
+      "scale": 1
+    },
+    "email": "gagan.bhattarai@gritfeat.com",
+    "appointmentDate": "16-May-2022"
+  },
+  {
+    "id": "kamana-karki",
+    "name": "Kamana Karki",
+    "title": "Data Engineer",
+    "birthday": "12-13",
+    "photoFileName": "Kamana Karki.png",
+    "birthdayPhotoSettings": {
+      "x": 160,
+      "y": 568,
+      "scale": 1.15
+    },
+    "idCardPhotoSettings": {
+      "x": 0,
+      "y": 0,
+      "scale": 1
+    },
+    "email": "kamana.karki@gritfeat.com",
+    "appointmentDate": "23-Aug-2022"
+  },
+  {
+    "id": "krisha-maharjan",
+    "name": "Krisha Maharjan",
+    "title": "Sr. Data Engineer",
+    "birthday": "01-26",
+    "photoFileName": "Krisha Maharjan.png",
+    "birthdayPhotoSettings": {
+      "x": 160,
+      "y": 568,
+      "scale": 1.15
+    },
+    "idCardPhotoSettings": {
+      "x": 0,
+      "y": 0,
+      "scale": 1
+    },
+    "email": "krisha.maharjan@gritfeat.com",
+    "appointmentDate": "16-May-2022"
+  },
+  {
+    "id": "krishna-bhandari",
+    "name": "Krishna Bhandari",
+    "title": "Sr.Data Engineer",
+    "birthday": "02-24",
+    "photoFileName": "Krishna Bhandari.png",
+    "birthdayPhotoSettings": {
+      "x": 160,
+      "y": 568,
+      "scale": 1.15
+    },
+    "idCardPhotoSettings": {
+      "x": 0,
+      "y": 0,
+      "scale": 1
+    },
+    "email": "krishna.bhandari@gritfeat.com",
+    "appointmentDate": "16-Jan-2023"
+  },
+  {
+    "id": "kushal-pangeni",
+    "name": "Kushal Pangeni",
+    "title": "Software Engineer",
+    "birthday": "04-08",
+    "photoFileName": "Kushal Pangeni.png",
+    "birthdayPhotoSettings": {
+      "x": 160,
+      "y": 568,
+      "scale": 1.15
+    },
+    "idCardPhotoSettings": {
+      "x": 0,
+      "y": 0,
+      "scale": 1
+    },
+    "email": "kushal.pangeni@gritfeat.com",
+    "appointmentDate": "06-Mar-2024"
+  },
+  {
+    "id": "madhav-pandey",
+    "name": "Madhav Pandey",
+    "title": "Lead Engineer",
+    "birthday": "09-22",
+    "photoFileName": "Madhav Pandey.png",
+    "birthdayPhotoSettings": {
+      "x": 160,
+      "y": 568,
+      "scale": 1.15
+    },
+    "idCardPhotoSettings": {
+      "x": 0,
+      "y": 0,
+      "scale": 1
+    },
+    "email": "madhav@gritfeat.com",
+    "appointmentDate": "1-Oct-2018"
+  },
+  {
+    "id": "mahesh-karki",
+    "name": "Mahesh Karki",
+    "title": "Sr.Software Engineer",
+    "birthday": "01-02",
+    "photoFileName": "Mahesh Karki.png",
+    "birthdayPhotoSettings": {
+      "x": 160,
+      "y": 568,
+      "scale": 1.15
+    },
+    "idCardPhotoSettings": {
+      "x": 0,
+      "y": 0,
+      "scale": 1
+    },
+    "email": "mahesh.karki@gritfeat.com",
+    "appointmentDate": "22-Jan-2024"
+  },
+  {
+    "id": "meenu-tamang",
+    "name": "Meenu Tamang",
+    "title": "Ast. Business Development Manager",
+    "birthday": "03-20",
+    "photoFileName": "Meenu Tamang.png",
+    "birthdayPhotoSettings": {
+      "x": 160,
+      "y": 568,
+      "scale": 1.15
+    },
+    "idCardPhotoSettings": {
+      "x": 0,
+      "y": 0,
+      "scale": 1
+    },
+    "email": "meenu.tamang@gritfeat.com",
+    "appointmentDate": "29-Apr-2025"
+  },
+  {
+    "id": "monica-subba",
+    "name": "Monica Subba",
+    "title": "Office Administrator",
+    "birthday": "07-12",
+    "photoFileName": "Monica Subba.png",
+    "birthdayPhotoSettings": {
+      "x": 160,
+      "y": 568,
+      "scale": 1.15
+    },
+    "idCardPhotoSettings": {
+      "x": 0,
+      "y": 0,
+      "scale": 1
+    },
+    "email": "monica@gritfeat.com",
+    "appointmentDate": "1-Oct-2018"
+  },
+  {
+    "id": "nisham-maharjan",
+    "name": "Nisham Maharjan",
+    "title": "Team Member",
+    "birthday": "01-01",
+    "photoFileName": "Nisham Maharjan.png",
+    "birthdayPhotoSettings": {
+      "x": 160,
+      "y": 568,
+      "scale": 1.15
+    },
+    "idCardPhotoSettings": {
+      "x": 0,
+      "y": 0,
+      "scale": 1
+    },
+    "email": "nisham.maharjan@gritfeat.com"
+  },
+  {
+    "id": "prashjeev-rai",
+    "name": "Prashjeev Rai",
+    "title": " ML Engineer",
+    "birthday": "12-07",
+    "photoFileName": "Prashjeev Rai.png",
+    "birthdayPhotoSettings": {
+      "x": 160,
+      "y": 568,
+      "scale": 1.15
+    },
+    "idCardPhotoSettings": {
+      "x": 0,
+      "y": 0,
+      "scale": 1
+    },
+    "email": "prashjeev.rai@gritfeat.com",
+    "appointmentDate": "22-July-2024"
+  },
+  {
+    "id": "puja-shrestha",
+    "name": "Puja Shrestha",
+    "title": "Sr. Data Engineer",
+    "birthday": "10-24",
+    "photoFileName": "Puja Shrestha.png",
+    "birthdayPhotoSettings": {
+      "x": 160,
+      "y": 568,
+      "scale": 1.15
+    },
+    "idCardPhotoSettings": {
+      "x": 0,
+      "y": 0,
+      "scale": 1
+    },
+    "email": "puja.shrestha@gritfeat.com",
+    "appointmentDate": "16-May-2022"
+  },
+  {
+    "id": "rabi-maharjan",
+    "name": "Rabi Maharjan",
+    "title": "Product Designer",
+    "birthday": "01-23",
+    "photoFileName": "Rabi Maharjan.png",
+    "birthdayPhotoSettings": {
+      "x": 160,
+      "y": 568,
+      "scale": 1.15
+    },
+    "idCardPhotoSettings": {
+      "x": 0,
+      "y": 0,
+      "scale": 1
+    },
+    "email": "rabi.maharjan@gritfeat.com",
+    "appointmentDate": "02-May-2023"
+  },
+  {
+    "id": "raju-deula",
+    "name": "Raju Deula",
+    "title": "Office Helper",
+    "birthday": "06-30",
+    "photoFileName": "Raju Deula.png",
+    "birthdayPhotoSettings": {
+      "x": 160,
+      "y": 568,
+      "scale": 1.15
+    },
+    "idCardPhotoSettings": {
+      "x": 0,
+      "y": 0,
+      "scale": 1
+    },
+    "email": "raju.deula@gritfeat.com",
+    "appointmentDate": "14-Aug-2023"
+  },
+  {
+    "id": "rojina-maharjan",
+    "name": "Rojina Maharjan",
+    "title": "Sr. Data Engineer",
+    "birthday": "06-15",
+    "photoFileName": "Rojina Maharjan.png",
+    "birthdayPhotoSettings": {
+      "x": 160,
+      "y": 568,
+      "scale": 1.15
+    },
+    "idCardPhotoSettings": {
+      "x": 0,
+      "y": 0,
+      "scale": 1
+    },
+    "email": "rojina@gritfeat.com",
+    "appointmentDate": "1-Oct-2018"
+  },
+  {
+    "id": "ronish-shrestha",
+    "name": "Ronish Shrestha",
+    "title": "Sr.Software Engineer",
+    "birthday": "12-29",
+    "photoFileName": "Ronish Shrestha.png",
+    "birthdayPhotoSettings": {
+      "x": 160,
+      "y": 568,
+      "scale": 1.15
+    },
+    "idCardPhotoSettings": {
+      "x": 0,
+      "y": 0,
+      "scale": 1
+    },
+    "email": "ronish.shrestha@gritfeat.com",
+    "appointmentDate": "11-Nov-2024"
+  },
+  {
+    "id": "roshan-subedi",
+    "name": "Roshan Subedi",
+    "title": "Data Engineer",
+    "birthday": "07-24",
+    "photoFileName": "Roshan Subedi.png",
+    "birthdayPhotoSettings": {
+      "x": 160,
+      "y": 568,
+      "scale": 1.15
+    },
+    "idCardPhotoSettings": {
+      "x": 0,
+      "y": 0,
+      "scale": 1
+    },
+    "email": "roshan.subedi@gritfeat.com",
+    "appointmentDate": "03-July-2023"
+  },
+  {
+    "id": "sajag-shakya",
+    "name": "Sajag Shakya",
+    "title": "Sr. Data Engineer",
+    "birthday": "01-21",
+    "photoFileName": "Sajag Shakya.png",
+    "birthdayPhotoSettings": {
+      "x": 160,
+      "y": 568,
+      "scale": 1.15
+    },
+    "idCardPhotoSettings": {
+      "x": 0,
+      "y": 0,
+      "scale": 1
+    },
+    "email": "sajag.shakya@gritfeat.com",
+    "appointmentDate": "22-Oct-2024"
+  },
+  {
+    "id": "saljesh-maharjan",
+    "name": "Saljesh Maharjan",
+    "title": "Data Engineer",
+    "birthday": "05-18",
+    "photoFileName": "Saljesh Maharjan.png",
+    "birthdayPhotoSettings": {
+      "x": 160,
+      "y": 568,
+      "scale": 1.15
+    },
+    "idCardPhotoSettings": {
+      "x": 0,
+      "y": 0,
+      "scale": 1
+    },
+    "email": "saljesh.maharjan@gritfeat.com",
+    "appointmentDate": "29-July-2024"
+  },
+  {
+    "id": "salina-maharjan",
+    "name": "Salina Maharjan",
+    "title": "Office Coordinator",
+    "birthday": "09-04",
+    "photoFileName": "Salina Maharjan.png",
+    "birthdayPhotoSettings": {
+      "x": 160,
+      "y": 568,
+      "scale": 1.15
+    },
+    "idCardPhotoSettings": {
+      "x": 0,
+      "y": 0,
+      "scale": 1
+    },
+    "email": "salina@gritfeat.com",
+    "appointmentDate": "11-Jan-2021"
+  },
+  {
+    "id": "samir-thapa",
+    "name": "Samir Thapa",
+    "title": "Software Engineer",
+    "birthday": "10-28",
+    "photoFileName": "Samir Thapa.png",
+    "birthdayPhotoSettings": {
+      "x": 160,
+      "y": 568,
+      "scale": 1.15
+    },
+    "idCardPhotoSettings": {
+      "x": 0,
+      "y": 0,
+      "scale": 1
+    },
+    "email": "samir.thapa@gritfeat.com",
+    "appointmentDate": "16-May-2023"
+  },
+  {
+    "id": "sangita-maharjan",
+    "name": "Sangita Maharjan",
+    "title": "Project Manager",
+    "birthday": "09-04",
+    "photoFileName": "Sangita Maharjan.png",
+    "birthdayPhotoSettings": {
+      "x": 160,
+      "y": 568,
+      "scale": 1.15
+    },
+    "idCardPhotoSettings": {
+      "x": 0,
+      "y": 0,
+      "scale": 1
+    },
+    "email": "sangita.maharjan@gritfeat.com",
+    "appointmentDate": "13-Feb-2023"
+  },
+  {
+    "id": "saurav-khanal",
+    "name": "Saurav Khanal",
+    "title": "Software Engineer",
+    "birthday": "02-09",
+    "photoFileName": "Saurav Khanal.png",
+    "birthdayPhotoSettings": {
+      "x": 160,
+      "y": 568,
+      "scale": 1.15
+    },
+    "idCardPhotoSettings": {
+      "x": 0,
+      "y": 0,
+      "scale": 1
+    },
+    "email": "saurav.khanal@gritfeat.com",
+    "appointmentDate": "22-July-2024"
+  },
+  {
+    "id": "shanti-deula",
+    "name": "Shanti Deula",
+    "title": "Office Helper",
+    "birthday": "06-12",
+    "photoFileName": "Shanti Deula.png",
+    "birthdayPhotoSettings": {
+      "x": 160,
+      "y": 568,
+      "scale": 1.15
+    },
+    "idCardPhotoSettings": {
+      "x": 0,
+      "y": 0,
+      "scale": 1
+    },
+    "email": "shanti.deula@gritfeat.com",
+    "appointmentDate": "16-Jun-2022"
+  },
+  {
+    "id": "sonika-maharjan",
+    "name": "Sonika Maharjan",
+    "title": "Sr.Software Engineer",
+    "birthday": "12-27",
+    "photoFileName": "Sonika Maharjan.png",
+    "birthdayPhotoSettings": {
+      "x": 160,
+      "y": 568,
+      "scale": 1.15
+    },
+    "idCardPhotoSettings": {
+      "x": 0,
+      "y": 0,
+      "scale": 1
+    },
+    "email": "sonika.maharjan@gritfeat.com",
+    "appointmentDate": "17-Aug-2021"
+  },
+  {
+    "id": "sony-tuladhar",
+    "name": "Sony Tuladhar",
+    "title": "Sr. QA Engineer",
+    "birthday": "03-05",
+    "photoFileName": "Sony Tuladhar.png",
+    "birthdayPhotoSettings": {
+      "x": 160,
+      "y": 568,
+      "scale": 1.15
+    },
+    "idCardPhotoSettings": {
+      "x": 0,
+      "y": 0,
+      "scale": 1
+    },
+    "email": "sony.tuladhar@gritfeat.com",
+    "appointmentDate": "15-Apr-2024"
+  },
+  {
+    "id": "success-maharjan",
+    "name": "Success Maharjan",
+    "title": "Principal Engineer",
+    "birthday": "02-25",
+    "photoFileName": "Success Maharjan.png",
+    "birthdayPhotoSettings": {
+      "x": 160,
+      "y": 568,
+      "scale": 1.15
+    },
+    "idCardPhotoSettings": {
+      "x": 0,
+      "y": 0,
+      "scale": 1
+    },
+    "email": "success@gritfeat.com",
+    "appointmentDate": "22-Oct-2018"
+  },
+  {
+    "id": "sujen-maharjan",
+    "name": "Sujen Maharjan",
+    "title": "CEO",
+    "birthday": "09-28",
+    "photoFileName": "Sujen Maharjan.png",
+    "birthdayPhotoSettings": {
+      "x": 160,
+      "y": 568,
+      "scale": 1.15
+    },
+    "idCardPhotoSettings": {
+      "x": 0,
+      "y": 0,
+      "scale": 1
+    },
+    "email": "sujen@gritfeat.com"
+  },
+  {
+    "id": "sumedh-bajracharya",
+    "name": "Sumedh Bajracharya",
+    "title": "Sr.Software Engineer ",
+    "birthday": "02-18",
+    "photoFileName": "Sumedh Bajracharya.png",
+    "birthdayPhotoSettings": {
+      "x": 160,
+      "y": 568,
+      "scale": 1.15
+    },
+    "idCardPhotoSettings": {
+      "x": 0,
+      "y": 0,
+      "scale": 1
+    },
+    "email": "sumedh.bajracharya@gritfeat.com",
+    "appointmentDate": "14-Dec-2020"
+  },
+  {
+    "id": "sunira-maharjan",
+    "name": "Sunira Maharjan",
+    "title": "Sr. Software Engineer",
+    "birthday": "04-17",
+    "photoFileName": "Sunira Maharjan.png",
+    "birthdayPhotoSettings": {
+      "x": 160,
+      "y": 568,
+      "scale": 1.15
+    },
+    "idCardPhotoSettings": {
+      "x": 0,
+      "y": 0,
+      "scale": 1
+    },
+    "email": "sunira.maharjan@gritfeat.com",
+    "appointmentDate": "15-Apr-2024"
+  },
+  {
+    "id": "suvha-shrestha",
+    "name": "Suvha Shrestha",
+    "title": "Sr. Software Engineer",
+    "birthday": "07-17",
+    "photoFileName": "Suvha Shrestha.png",
+    "birthdayPhotoSettings": {
+      "x": 160,
+      "y": 568,
+      "scale": 1.15
+    },
+    "idCardPhotoSettings": {
+      "x": 0,
+      "y": 0,
+      "scale": 1
+    },
+    "email": "suvha.shrestha@gritfeat.com",
+    "appointmentDate": "02-May-2023"
+  },
+  {
+    "id": "tansha-maharjan",
+    "name": "Tansha Maharjan",
+    "title": "Sr. QA Engineer",
+    "birthday": "01-01",
+    "photoFileName": "Tansha Maharjan.png",
+    "birthdayPhotoSettings": {
+      "x": 160,
+      "y": 568,
+      "scale": 1.15
+    },
+    "idCardPhotoSettings": {
+      "x": 0,
+      "y": 0,
+      "scale": 1
+    },
+    "email": "tansha.maharjan@gritfeat.com",
+    "appointmentDate": "15-Sep-2019"
+  },
+  {
+    "id": "ujan-manandhar",
+    "name": "Ujan Manandhar",
+    "title": "UIUX Designer",
+    "birthday": "03-25",
+    "photoFileName": "Ujan Manandhar.png",
+    "birthdayPhotoSettings": {
+      "x": 160,
+      "y": 568,
+      "scale": 1.15
+    },
+    "idCardPhotoSettings": {
+      "x": 0,
+      "y": 0,
+      "scale": 1
+    },
+    "email": "ujan.manandhar@gritfeat.com",
+    "appointmentDate": "17-Nov-2023"
+  },
+  {
+    "id": "yakina-maharjan",
+    "name": "Yakina Maharjan",
+    "title": "ML Engineer",
+    "birthday": "06-15",
+    "photoFileName": "Yakina Maharjan.png",
+    "birthdayPhotoSettings": {
+      "x": 160,
+      "y": 568,
+      "scale": 1.15
+    },
+    "idCardPhotoSettings": {
+      "x": 0,
+      "y": 0,
+      "scale": 1
+    },
+    "email": "yakina.maharjan@gritfeat.com",
+    "appointmentDate": "18 Aug 2025"
+  },
+  {
+    "id": "mukesh-maharjan",
+    "name": "Mukesh Maharjan",
+    "title": "Engineering Manager",
+    "birthday": "09-02",
+    "photoFileName": "Mukesh Maharjan.png",
+    "birthdayPhotoSettings": {
+      "x": 160,
+      "y": 568,
+      "scale": 1.15
+    },
+    "idCardPhotoSettings": {
+      "x": 0,
+      "y": 0,
+      "scale": 1
+    },
+    "email": "mukesh@gritfeat.com",
+    "appointmentDate": "1-Oct-2018"
+  }
+]

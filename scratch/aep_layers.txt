@@ -1,0 +1,26 @@
+Comp: 1
+  Layer: 1.png (AVLayer)
+Comp: 2
+  Layer: 1.png (AVLayer)
+Comp: Comp 1
+  Layer: Testomonial (TextLayer)
+  Layer: Camera 1 (CameraLayer)
+  Layer: Confetti video (AVLayer)
+  Layer: Pre-comp 1 (AVLayer)
+  Layer: Background overlay (AVLayer)
+  Layer: Background Image (AVLayer)
+  Layer: Background sound (AVLayer)
+Comp: Group 58
+  Layer: Group 58.png (AVLayer)
+Comp: Pre-comp 1
+  Layer: <empty text layer> (TextLayer)
+  Layer: Black Solid 1 (AVLayer)
+  Layer: Black Solid 1 (AVLayer)
+  Layer: Layer 1/ZX.ai (AVLayer)
+  Layer: shadow (AVLayer)
+  Layer: Card 1 (AVLayer)
+  Layer: Card 2 (AVLayer)
+  Layer: hgello (AVLayer)
+  Layer: Subtracts.png (AVLayer)
+Comp: ww
+  Layer: ww.png (AVLayer)

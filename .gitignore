@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# outputs and logs
+/public/outputs/*.mp4
+/public/outputs/*.gif
+/scratch/nexrender-work/

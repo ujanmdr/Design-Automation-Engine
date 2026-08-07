@@ -1,0 +1,8 @@
+Comp 1 Layers name and charCodes:
+Layer 1: 'Testimonial' (length: 11, codes: 84,101,115,116,105,109,111,110,105,97,108)
+Layer 2: 'Camera 1' (length: 8, codes: 67,97,109,101,114,97,32,49)
+Layer 3: 'Confetti' (length: 8, codes: 67,111,110,102,101,116,116,105)
+Layer 4: 'Pre-comp 1' (length: 10, codes: 80,114,101,45,99,111,109,112,32,49)
+Layer 5: 'Background Image' (length: 16, codes: 66,97,99,107,103,114,111,117,110,100,32,73,109,97,103,101)
+Layer 6: 'Background Image' (length: 16, codes: 66,97,99,107,103,114,111,117,110,100,32,73,109,97,103,101)
+Layer 7: 'Background Music' (length: 16, codes: 66,97,99,107,103,114,111,117,110,100,32,77,117,115,105,99)

@@ -1,0 +1,30 @@
+Comps and Layer Details for Pre-comp 1:
+Layer 1: <empty text layer>
+  Layer Styles (11):
+Layer 2: Black Solid 1
+  Layer Styles (11):
+    - Blending Options (Enabled)
+    - Inner Shadow (Enabled)
+Layer 3: Black Solid 1
+  Effects (4):
+    - Brightness & Contrast
+    - Gaussian Blur
+    - Noise
+    - Transform
+  Layer Styles (11):
+Layer 4: Layer 1/ZX.ai
+  Layer Styles (11):
+Layer 5: shadow
+  Effects (1):
+    - Drop Shadow
+  Layer Styles (11):
+Layer 6: Card 1
+  Effects (1):
+    - CC Light Sweep
+  Layer Styles (11):
+Layer 7: Card 2
+  Layer Styles (11):
+Layer 8: hgello
+  Layer Styles (11):
+Layer 9: Subtracts.png
+  Layer Styles (11):
