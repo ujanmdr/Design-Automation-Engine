@@ -274,11 +274,27 @@ export default function WorkAnniversaryPage() {
     setGifError(null);
 
     try {
-      const res = await fetch("/api/convert-to-gif", {
+      const res = await fetch("/api/generate-anniversary-gif", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ videoUrl: renderedVideoUrl }),
       });
+
+      if (!res.ok) {
+        const text = await res.text();
+        let errMsg = "Failed to convert to GIF";
+        try {
+          const json = JSON.parse(text);
+          errMsg = json.error || json.details || errMsg;
+        } catch {
+          errMsg = `Server returned status ${res.status}`;
+        }
+        setGifError(errMsg);
+        setGifMsg(null);
+        setGeneratingGif(false);
+        return;
+      }
+
       const data = await res.json();
 
       if (data.success) {
